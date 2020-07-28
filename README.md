@@ -7,7 +7,7 @@ This is a code exercise. It'll be a component of a continuing discussion. It'll 
 * Use Visual Studio
 
 ## Existing CI System
-* CI is via AppVeyor and is available [here](TODO:LINK_ME)
+* CI is via AppVeyor and is [here](https://ci.appveyor.com/project/Fyzxs/code-exercise-services). This may not be publicly available yet.
 
 ## Usage
 * Get the latest artifact from [here](TODO:LINK_ME)
