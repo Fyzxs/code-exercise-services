@@ -6,3 +6,7 @@ before_build:
 build:
   project: GroceryImport/GroceryImport.sln
   verbosity: detailed
+
+test:
+  assemblies:
+    - '**\*.tests.dll'
