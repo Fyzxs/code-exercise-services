@@ -13,29 +13,6 @@ namespace GroceryImport.Core.Tests
     public class EmergentTests
     {
         [TestMethod, TestCategory("unit")]
-        public void ProductRecord_ShouldTakeStringRecord()
-        {
-            //Arrange
-            ProductRecordSample1 productRecord = new ProductRecordSample1("");
-
-            //Act
-
-            //Assert
-        }
-
-        [TestMethod, TestCategory("unit")]
-        public void ProductRecord_ShouldReturnProductId()
-        {
-            //Arrange
-            ProductRecordSample1 productRecord = new ProductRecordSample1("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
-
-            //Act
-            string actual = productRecord.ProductId();
-
-            //Assert
-            actual.Should().Be("14963801");
-        }
-        [TestMethod, TestCategory("unit")]
         public void ProductRecord_ShouldReturnProductId_FromProductSample4()
         {
             //Arrange
@@ -46,38 +23,6 @@ namespace GroceryImport.Core.Tests
 
             //Assert
             actual.Should().Be("14963801");
-        }
-    }
-
-    public sealed class ProductRecordSample1
-    {
-        private readonly string _record;
-
-        public ProductRecordSample1(string record) => _record = record;
-
-
-
-        public string ProductId()
-        {
-            return _record.Substring(0, 8);
-        }
-    }
-
-    public sealed class ProductRecordSample2
-    {
-        private readonly string _record;
-
-        private Dictionary<string, Func<string, string>> _map = new Dictionary<string, Func<string, string>>
-        {
-            {"ProductId", x => x.Substring(0, 8)}
-        };
-
-        public ProductRecordSample2(string record) => _record = record;
-
-
-        public string Get(string key)
-        {
-            return _map[key](_record);
         }
     }
 
@@ -124,29 +69,61 @@ namespace GroceryImport.Core.Tests
         }
     }
 
-
-    //public sealed class ProductRecordSample3
+    //public sealed class ProductRecordSample1
     //{
     //    private readonly string _record;
 
-    //    private readonly List<IField> _fields = new List<IField>
+    //    public ProductRecordSample1(string record) => _record = record;
+
+
+
+    //    public string ProductId()
     //    {
-    //        new ProductId()
-    //    };
-
-    //    public ProductRecordSample3(string record) => _record = record;
-
-    //    public string Get(string key) => _fields.First(x => x.Is).Value(_record);
-
-    //    private class ProductId : IField
-    //    {
-    //        public string Value(string record) => record.Substring(0, 8);
-    //    }
-
-    //    internal interface IField
-    //    {
-    //        public string Value(string record);
+    //        return _record.Substring(0, 8);
     //    }
     //}
+
+    //public sealed class ProductRecordSample2
+    //{
+    //    private readonly string _record;
+
+    //    private Dictionary<string, Func<string, string>> _map = new Dictionary<string, Func<string, string>>
+    //    {
+    //        {"ProductId", x => x.Substring(0, 8)}
+    //    };
+
+    //    public ProductRecordSample2(string record) => _record = record;
+
+
+    //    public string Get(string key)
+    //    {
+    //        return _map[key](_record);
+    //    }
+    //}
+
+
+    ////public sealed class ProductRecordSample3
+    ////{
+    ////    private readonly string _record;
+
+    ////    private readonly List<IField> _fields = new List<IField>
+    ////    {
+    ////        new ProductId()
+    ////    };
+
+    ////    public ProductRecordSample3(string record) => _record = record;
+
+    ////    public string Get(string key) => _fields.First(x => x.Is).Value(_record);
+
+    ////    private class ProductId : IField
+    ////    {
+    ////        public string Value(string record) => record.Substring(0, 8);
+    ////    }
+
+    ////    internal interface IField
+    ////    {
+    ////        public string Value(string record);
+    ////    }
+    ////}
 
 }
