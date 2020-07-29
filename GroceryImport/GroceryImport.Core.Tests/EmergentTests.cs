@@ -1,9 +1,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace GroceryImport.Tests
+namespace GroceryImport.Core.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class EmergentTests
     {
         [TestMethod]
         public void TestMethod1()
