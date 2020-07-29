@@ -9,45 +9,25 @@ namespace GroceryImport.Core.Tests
     [TestClass]
     public class EmergentTests
     {
-        [TestMethod]
-        public void ProvideNoRecordsForEmptyInputData()
+        [TestMethod, TestCategory("unit")]
+        public void ProductRecord_ShouldTakeStringRecord()
         {
-            IProductRecordCollection productRecordCollection = new CompanyStoreProductRecordCollection(new InMemoryInputData());
+            //Arrange
+            ProductRecord productRecord = new ProductRecord("");
 
-            List<ProductRecord> productRecords = productRecordCollection.ToList();
-            productRecords.Should().BeEmpty();
+            //Act
+
+            //Assert
         }
-    }
-
-    public sealed class CompanyStoreProductRecordCollection : IProductRecordCollection
-    {
-        private readonly IInputData _inputData;
-
-        public CompanyStoreProductRecordCollection(IInputData inputData) => _inputData = inputData;
-
-
-
-        public IEnumerator<ProductRecord> GetEnumerator()
-        {
-            return new List<ProductRecord>().GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-    }
-
-    public interface IProductRecordCollection : IEnumerable<ProductRecord>
-    {
     }
 
     public sealed class ProductRecord
     {
-    }
+        private readonly string _record;
 
-    public sealed class InMemoryInputData : IInputData
-    {
-    }
-
-    public interface IInputData
-    {
+        public ProductRecord(string record)
+        {
+            _record = record;
+        }
     }
 }
