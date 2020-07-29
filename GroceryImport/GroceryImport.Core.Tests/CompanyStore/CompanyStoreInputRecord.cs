@@ -3,27 +3,57 @@ using GroceryImport.Core.Tests.CompanyStore.Fields;
 
 namespace GroceryImport.Core.Tests.CompanyStore
 {
-    public sealed class CompanyStoreInputRecord
+    internal sealed class CompanyStoreInputRecord
     {
         private readonly Record _record;
 
         public CompanyStoreInputRecord(string record) : this(new Record(record)) { }
 
-        public CompanyStoreInputRecord(Record record) => _record = record;
+        private CompanyStoreInputRecord(Record record) => _record = record;
 
         public NumberField ProductId() => new ProductId(_record);
         
         public StringField ProductDescription() => new ProductDescription(_record);
         
         public CurrencyField PromotionalSingularPrice() => new PromotionalSingularPrice(_record);
+        public CurrencyField RegularSplitPrice() => new RegularSplitPrice(_record);
+        public NumberField RegularForQuantity() => new RegularForQuantity(_record);
         
         public Flag IsPerWeight() => Flags().PerWeight();
         
         public Flag IsTaxable() => Flags().Taxable();
         
         private Flags Flags() => new Flags(_record);
+    }
 
-        public TaxRate TaxRate() => new CompanyStoreTaxRate(IsTaxable());
+    public sealed class CompanyStoreProductRecord : ProductRecord
+    {
+        private readonly CompanyStoreInputRecord _inputRecord;
+
+        public CompanyStoreProductRecord(string inputRecord) :this(new CompanyStoreInputRecord(inputRecord)){}
+
+        private CompanyStoreProductRecord(CompanyStoreInputRecord inputRecord)
+        {
+            _inputRecord = inputRecord;
+        }
+
+        public int ProductId() => _inputRecord.ProductId();
+        
+        public string ProductDescription() => _inputRecord.ProductDescription();
+
+        public double TaxRate() => new CompanyStoreTaxRate(_inputRecord.IsTaxable());
+
+        public string RegularDisplayPrice()
+        {
+            if(IsRegularSplitPrice()) return $"{_inputRecord.RegularForQuantity().AsSystemType()} for {_inputRecord.RegularSplitPrice().AsCurrencyString()}";
+
+            return _inputRecord.RegularSplitPrice().AsCurrencyString();
+        }
+        private bool IsRegularSplitPrice() => _inputRecord.RegularForQuantity() > 0;
+    }
+
+    public abstract class ProductRecord
+    {
     }
 
     public sealed class CompanyStoreTaxRate : TaxRate

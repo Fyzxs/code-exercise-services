@@ -77,10 +77,10 @@ ID       DESCRIPTION                                                 RegSing$ Pr
             CompanyStoreInputRecord companyStoreInputRecord = new CompanyStoreInputRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
 
             //Act
-            bool subject = companyStoreInputRecord.IsPerWeight();
+            bool actual = companyStoreInputRecord.IsPerWeight();
 
             //Assert
-            subject.Should().BeFalse();
+            actual.Should().BeFalse();
         }
 
         [TestMethod, TestCategory("unit")]
@@ -90,10 +90,47 @@ ID       DESCRIPTION                                                 RegSing$ Pr
             CompanyStoreInputRecord companyStoreInputRecord = new CompanyStoreInputRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
 
             //Act
-            bool subject = companyStoreInputRecord.IsTaxable();
+            bool actual = companyStoreInputRecord.IsTaxable();
 
             //Assert
-            subject.Should().BeTrue();
+            actual.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("unit")]
+        public void RegularDisplayPriceShouldShowSplit()
+        {
+            //Arrange
+            CompanyStoreProductRecord companyStoreInputRecord = new CompanyStoreProductRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
+
+            //Act
+            string actual = companyStoreInputRecord.RegularDisplayPrice();
+
+            //Assert
+            actual.Should().Be("2 for $13.00");
+        }
+        [TestMethod, TestCategory("unit")]
+        public void TaxRateShouldBeExpectedGivenTaxable()
+        {
+            //Arrange
+            CompanyStoreProductRecord companyStoreInputRecord = new CompanyStoreProductRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
+
+            //Act
+            double actual = companyStoreInputRecord.TaxRate();
+
+            //Assert
+            actual.Should().Be(.07775);
+        }
+        [TestMethod, TestCategory("unit")]
+        public void TaxRateShouldBeZeroGivenNotTaxable()
+        {
+            //Arrange
+            CompanyStoreProductRecord companyStoreInputRecord = new CompanyStoreProductRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNNNNNN   12x12oz");
+
+            //Act
+            double actual = companyStoreInputRecord.TaxRate();
+
+            //Assert
+            actual.Should().Be(0d);
         }
     }
 }

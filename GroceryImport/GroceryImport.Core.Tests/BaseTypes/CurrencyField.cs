@@ -8,6 +8,8 @@ namespace GroceryImport.Core.Tests.BaseTypes
 
         protected CurrencyField(Record record, int startIndexOnesBased, int endIndexOnesBased) : base(record, startIndexOnesBased, endIndexOnesBased) { }
 
+        public string AsCurrencyString() => AsSystemType().ToString("C");
+
         public override decimal AsSystemType()
         {
             string value = Value();
