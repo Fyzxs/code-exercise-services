@@ -8,7 +8,7 @@ build:
   verbosity: detailed
 
 test_script:
-  - vstest.console /logger:Appveyor '**\*.tests.dll'
+  - vstest.console /logger:Appveyor GroceryImport\GroceryImport.Tests\bin\Debug\netcoreapp3.1\GroceryImport.Tests.dll
 
 on_finish:
   - sh: |
