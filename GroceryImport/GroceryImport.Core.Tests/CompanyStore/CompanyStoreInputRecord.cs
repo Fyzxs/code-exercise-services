@@ -1,3 +1,4 @@
+using System;
 using GroceryImport.Core.Tests.BaseTypes;
 using GroceryImport.Core.Tests.CompanyStore.Fields;
 
@@ -16,6 +17,7 @@ namespace GroceryImport.Core.Tests.CompanyStore
         public StringField ProductDescription() => new ProductDescription(_record);
         
         public CurrencyField PromotionalSingularPrice() => new PromotionalSingularPrice(_record);
+        public CurrencyField RegularSingularPrice() => new RegularSingularPrice(_record);
         public CurrencyField RegularSplitPrice() => new RegularSplitPrice(_record);
         public NumberField RegularForQuantity() => new RegularForQuantity(_record);
         
@@ -32,10 +34,10 @@ namespace GroceryImport.Core.Tests.CompanyStore
 
         public CompanyStoreProductRecord(string inputRecord) :this(new CompanyStoreInputRecord(inputRecord)){}
 
-        private CompanyStoreProductRecord(CompanyStoreInputRecord inputRecord)
-        {
-            _inputRecord = inputRecord;
-        }
+        private CompanyStoreProductRecord(CompanyStoreInputRecord inputRecord) => _inputRecord = inputRecord;
+
+        public string CompanyId() => "THE_COMPANY_ID";
+        public string StoreId() => "THE_COMPANY_STORE_ID";
 
         public int ProductId() => _inputRecord.ProductId();
         
@@ -45,11 +47,26 @@ namespace GroceryImport.Core.Tests.CompanyStore
 
         public string RegularDisplayPrice()
         {
-            if(IsRegularSplitPrice()) return $"{_inputRecord.RegularForQuantity().AsSystemType()} for {_inputRecord.RegularSplitPrice().AsCurrencyString()}";
+            //TODO: This should be a "CompanyStoreRegularDisplayPrice" object
+            if (IsRegularSplitPrice()) return $"{_inputRecord.RegularForQuantity().AsSystemType()} for {_inputRecord.RegularSplitPrice().AsCurrencyString()}";
 
             return _inputRecord.RegularSplitPrice().AsCurrencyString();
         }
         private bool IsRegularSplitPrice() => _inputRecord.RegularForQuantity() > 0;
+
+        public decimal RegularCalculatorPrice()
+        {
+            //TODO: This should be a "CalculatorPrice", maybe a "RegularCalculatorPrice"... probably.
+            if (IsRegularSplitPrice())
+            {
+                decimal regularSplitPrice = _inputRecord.RegularSplitPrice().AsSystemType();
+                
+                return Math.Round(regularSplitPrice / _inputRecord.RegularForQuantity(), 4, MidpointRounding.ToNegativeInfinity);
+            }
+
+            return _inputRecord.RegularSingularPrice();
+        }
+
     }
 
     public abstract class ProductRecord

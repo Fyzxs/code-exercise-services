@@ -10,4 +10,12 @@ namespace GroceryImport.Core.Tests.CompanyStore.Fields
         public PromotionalSingularPrice(Record record) : base(record, StartIndexOnesBased, EndIndexOnesBased)
         { }
     }
+    internal sealed class RegularSingularPrice : CurrencyField
+    {
+        private const int StartIndexOnesBased = 70;
+        private const int EndIndexOnesBased = 77;
+
+        public RegularSingularPrice(Record record) : base(record, StartIndexOnesBased, EndIndexOnesBased)
+        { }
+    }
 }

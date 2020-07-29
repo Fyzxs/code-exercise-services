@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -132,5 +133,105 @@ ID       DESCRIPTION                                                 RegSing$ Pr
             //Assert
             actual.Should().Be(0d);
         }
+        [TestMethod, TestCategory("unit")]
+        public void RegularCalculatorPriceShouldBeExpectedValue()
+        {
+            //Arrange
+            CompanyStoreProductRecord companyStoreInputRecord = new CompanyStoreProductRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNNNNNN   12x12oz");
+
+            //Act
+            decimal actual = companyStoreInputRecord.RegularCalculatorPrice();
+
+            //Assert
+            actual.Should().Be(6.5m);
+        }
+
+        [TestMethod, TestCategory("unit")]
+        public void RegularCalculatorPriceShouldBeExactToFourDecimalRoundingDownOn5()
+        {
+            //Arrange
+            CompanyStoreProductRecord companyStoreInputRecord = new CompanyStoreProductRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00612345 00000000 00001000 00000000 NNNNNNNNN   12x12oz");
+
+            //Act
+            decimal actual = companyStoreInputRecord.RegularCalculatorPrice();
+
+            //Assert
+            actual.Should().Be(6.1234m);
+        }
+
+        [TestMethod, TestCategory("unit")]
+        public void RegularCalculatorPriceShouldBeExactToFourDecimalRoundingOn6()
+        {
+            //Arrange
+            CompanyStoreProductRecord companyStoreInputRecord = new CompanyStoreProductRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00612346 00000000 00001000 00000000 NNNNNNNNN   12x12oz");
+
+            //Act
+            decimal actual = companyStoreInputRecord.RegularCalculatorPrice();
+
+            //Assert
+            actual.Should().Be(6.1235m);
+        }
+
+        [TestMethod, TestCategory("unit")]
+        public void RegularCalculatorPriceShouldBeExactToFourDecimalRoundingOn4WhenNegative()
+        {
+            //Arrange
+            CompanyStoreProductRecord companyStoreInputRecord = new CompanyStoreProductRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 -0612344 00000000 00001000 00000000 NNNNNNNNN   12x12oz");
+
+            //Act
+            decimal actual = companyStoreInputRecord.RegularCalculatorPrice();
+
+            //Assert
+            actual.Should().Be(-6.1234m);
+        }
+
+        [TestMethod, TestCategory("unit")]
+        public void RegularCalculatorPriceShouldBeExactToFourDecimalRoundingOn6WhenNegative()
+        {
+            //Arrange
+            CompanyStoreProductRecord companyStoreInputRecord = new CompanyStoreProductRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 -0612346 00000000 00001000 00000000 NNNNNNNNN   12x12oz");
+
+            //Act
+            decimal actual = companyStoreInputRecord.RegularCalculatorPrice();
+
+            //Assert
+            actual.Should().Be(-6.1235m);
+        }
+
+    //    [TestMethod, TestCategory("unit")]
+    //    public void RoundingTests()
+    //    {
+    //        /*
+    //ToEven,
+    //AwayFromZero,
+    //ToZero,
+    //ToNegativeInfinity,
+    //ToPositiveInfinity,
+    //        */
+    //        MidpointRounding rounding = MidpointRounding.ToNegativeInfinity;
+
+    //        //Math.Round(23.4, rounding).Should().Be(23);
+    //        //Math.Round(23.49, rounding).Should().Be(23);
+    //        //Math.Round(23.5, rounding).Should().Be(23);
+    //        //Math.Round(23.51, rounding).Should().Be(24);
+    //        //Math.Round(23.6, rounding).Should().Be(24);
+
+    //        //Math.Round(-23.4, rounding).Should().Be(-23);
+    //        //Math.Round(-23.49, rounding).Should().Be(-23);
+    //        //Math.Round(-23.5, rounding).Should().Be(-23);
+    //        //Math.Round(-23.51, rounding).Should().Be(-24);
+    //        //Math.Round(-23.6, rounding).Should().Be(-24);
+
+    //        Math.Round(6.12344, 4, rounding).Should().Be(6.1234);
+    //        Math.Round(6.12345, 4, rounding).Should().Be(6.1234);
+    //        Math.Round(6.12346, 4, rounding).Should().Be(6.1235);
+    //        Math.Round(6.12354, 4, rounding).Should().Be(6.1235);
+    //        Math.Round(6.12355, 4, rounding).Should().Be(6.1235);
+    //        Math.Round(6.12356, 4, rounding).Should().Be(6.1236);
+
+    //        Math.Round(-6.12344, 4, rounding).Should().Be(-6.1234);
+    //        Math.Round(-6.12345, 4, rounding).Should().Be(-6.1234);
+    //        Math.Round(-6.12346, 4, rounding).Should().Be(-6.1235);
+    //    }
     }
 }
