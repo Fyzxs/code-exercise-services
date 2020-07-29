@@ -8,7 +8,7 @@ build:
   verbosity: detailed
 
 test_script:
-  - vstest.console /logger:Appveyor '**\*.Tests.dll'
+  - vstest.console /logger:Appveyor '**\*.tests.dll'
 
 on_finish:
   - sh: |
