@@ -70,23 +70,31 @@ ID       DESCRIPTION                                                 RegSing$ Pr
         }
 
         [TestMethod, TestCategory("unit")]
-        public void FlagsShouldBeExpected()
+        public void PerWeightShouldBeFalse()
         {
             //Arrange
             CompanyStoreProductRecord companyStoreProductRecord = new CompanyStoreProductRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
-            FlagsField subject = companyStoreProductRecord.Flags();
 
             //Act
+            bool subject = companyStoreProductRecord.IsPerWeight();
 
             //Assert
-            ((bool) subject.GetFlag(1)).Should().BeFalse();
-            ((bool) subject.GetFlag(2)).Should().BeFalse();
-            ((bool) subject.GetFlag(3)).Should().BeFalse();
-            ((bool) subject.GetFlag(4)).Should().BeFalse();
-            ((bool) subject.GetFlag(5)).Should().BeTrue();
+            subject.Should().BeFalse();
+        }
+
+        [TestMethod, TestCategory("unit")]
+        public void TaxableShouldBeTrue()
+        {
+            //Arrange
+            CompanyStoreProductRecord companyStoreProductRecord = new CompanyStoreProductRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
+
+            //Act
+            bool subject = companyStoreProductRecord.IsTaxable();
+
+            //Assert
+            subject.Should().BeTrue();
         }
     }
-
     public class CompanyStoreProductRecord
     {
         private readonly Record _record;
@@ -95,29 +103,82 @@ ID       DESCRIPTION                                                 RegSing$ Pr
 
         public CompanyStoreProductRecord(Record record) => _record = record;
 
-        public NumberField ProductId() => new NumberField(_record, 1, 8);
-        public StringField ProductDescription() => new StringField(_record, 10, 68);
-        public CurrencyField PromotionalSingularPrice() => new CurrencyField(_record, 79, 86);
+        public NumberField ProductId() => new CompanyStoreProductId(_record);
+        public StringField ProductDescription() => new CompanyStoreProductDescription(_record);
+        public CurrencyField PromotionalSingularPrice() => new CompanyStorePromotionalSingularPrice(_record);
+        private CompanyStoreFlags Flags() => new CompanyStoreFlags(_record);
 
-        public FlagsField Flags() => new FlagsField(_record, 124, 132);
+        public Flag IsPerWeight() => Flags().PerWeight();
+        public Flag IsTaxable() => Flags().Taxable();
     }
 
-    public class FlagsField : Field<string>
+    public sealed class CompanyStoreProductId : NumberField
     {
-        public FlagsField(Record record, int startIndexOnesBased, int endIndexOnesBased) : base(record, startIndexOnesBased, endIndexOnesBased) { }
+        private const int StartIndexOnesBased = 1;
+        private const int EndIndexOnesBased = 8;
 
-        public Flag GetFlag(int flagNumber) => new Flag(Value(), flagNumber);
+        public CompanyStoreProductId(Record record) : base(record, StartIndexOnesBased, EndIndexOnesBased)
+        { }
+    }
+
+    public sealed class CompanyStoreProductDescription : StringField
+    {
+        private const int StartIndexOnesBased = 10;
+        private const int EndIndexOnesBased = 68;
+
+        public CompanyStoreProductDescription(Record record) : base(record, StartIndexOnesBased, EndIndexOnesBased)
+        { }
+    }
+
+    public sealed class CompanyStorePromotionalSingularPrice : CurrencyField
+    {
+        private const int StartIndexOnesBased = 79;
+        private const int EndIndexOnesBased = 86;
+
+        public CompanyStorePromotionalSingularPrice(Record record) : base(record, StartIndexOnesBased, EndIndexOnesBased)
+        { }
+    }
+
+    public sealed class CompanyStoreFlags : FlagsField
+    {
+        private int PerWeightIndex = 3;
+        private int TaxableIndex = 5;
+        private const int StartIndexOnesBased = 124;
+        private const int EndIndexOnesBased = 132;
+
+        public CompanyStoreFlags(Record record) : base(record, StartIndexOnesBased, EndIndexOnesBased)
+        { }
+        public Flag PerWeight() => new CompanyStoreFlagPerWeight(Value());
+
+        public Flag Taxable() => new CompanyStoreFlagTaxable(Value());
+    }
+
+    public sealed class CompanyStoreFlagPerWeight : Flag
+    {
+        public CompanyStoreFlagPerWeight(string value) : base(value, 3)
+        {}
+    }
+    public sealed class CompanyStoreFlagTaxable : Flag
+    {
+        public CompanyStoreFlagTaxable(string value) : base(value, 5)
+        {}
+    }
+
+
+    public abstract class FlagsField : Field<string>
+    {
+        protected FlagsField(Record record, int startIndexOnesBased, int endIndexOnesBased) : base(record, startIndexOnesBased, endIndexOnesBased) { }
 
         public override string AsSystemType() => Value();
     }
 
-    public class Flag : ToSystem<bool>
+    public abstract class Flag : ToSystem<bool>
     {
         private const string TrueValue = "Y";
         private readonly string _value;
         private readonly int _flagNumber;
 
-        public Flag(string value, int flagNumber)
+        protected Flag(string value, int flagNumber)
         {
             _value = value;
             _flagNumber = flagNumber;
@@ -125,11 +186,11 @@ ID       DESCRIPTION                                                 RegSing$ Pr
         public override bool AsSystemType() => _value.Substring(_flagNumber - 1, 1) == TrueValue;
     }
 
-    public sealed class CurrencyField : Field<decimal>
+    public abstract class CurrencyField : Field<decimal>
     {
         //TODO: Currency requires a money object - I'm being a bit forgiving here. We'll see how long I stay that way.
 
-        public CurrencyField(Record record, int startIndexOnesBased, int endIndexOnesBased) : base(record, startIndexOnesBased, endIndexOnesBased) { }
+        protected CurrencyField(Record record, int startIndexOnesBased, int endIndexOnesBased) : base(record, startIndexOnesBased, endIndexOnesBased) { }
 
         public override decimal AsSystemType()
         {
@@ -140,14 +201,14 @@ ID       DESCRIPTION                                                 RegSing$ Pr
         }
     }
 
-    public sealed class StringField : Field<string>
+    public abstract class StringField : Field<string>
     {
         public StringField(Record record, int startIndexOnesBased, int endIndexOnesBased) : base(record, startIndexOnesBased, endIndexOnesBased) { }
 
         public override string AsSystemType() => Value().Trim();
     }
 
-    public sealed class NumberField : Field<int>
+    public class NumberField : Field<int>
     {
         public NumberField(Record record, int startIndexOnesBased, int endIndexOnesBased) : base(record, startIndexOnesBased, endIndexOnesBased) { }
 
