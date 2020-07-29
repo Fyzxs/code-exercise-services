@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using FluentAssertions;
@@ -11,103 +12,36 @@ namespace GroceryImport.Core.Tests
     [TestClass]
     public class EmergentTests
     {
+        /*
+ID       DESCRIPTION                                                 RegSing$ PrmSng$  RegSpt$  PrmSpt$  RegForX  PrmForX  FLAGS       ProductSize
+80000001 Kimchi-flavored white rice                                  00000567 00000000 00000000 00000000 00000000 00000000 NNNNNNNNN      18oz
+14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz
+40123401 Marlboro Cigarettes                                         00001000 00000549 00000000 00000000 00000000 00000000 YNNNNNNNN          
+50133333 Fuji Apples (Organic)                                       00000349 00000000 00000000 00000000 00000000 00000000 NNYNNNNNN        lb
+         */
         [TestMethod, TestCategory("unit")]
         public void ProductRecord_ShouldReturnProductId_FromProductSample4()
         {
             //Arrange
-            ProductRecordCompanyStore productRecord = new ProductRecordCompanyStore("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
+            CompanyStoreProductRecord companyStoreProductRecord = new CompanyStoreProductRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
 
             //Act
-            string actual = productRecord.Get("ProductId");
-
-            //Assert
-            actual.Should().Be("14963801");
-        }
-        [TestMethod, TestCategory("unit")]
-        public void ProductRecord_ShouldBeANumber()
-        {
-            //Arrange
-            ProductRecordCompanyStore productRecord = new ProductRecordCompanyStore("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
-
-            //Act
-            string actual = productRecord.Get("ProductId");
+            string actual = "";//companyStoreProductRecord.Get("ProductId");
 
             //Assert
             actual.Should().Be("14963801");
         }
     }
 
-    public sealed partial class ProductRecordCompanyStore : ProductRecord
+
+
+    [DebuggerDisplay("{AsSystemType()}")]
+    public abstract class ToSystem<TSystemType>
     {
-        private readonly string _record;
+        public static implicit operator TSystemType(ToSystem<TSystemType> origin) => origin.AsSystemType();
 
-        private static readonly RecordFieldCollection Collection = new RecordFieldCollection
-        {
-            new ProductId()
-        };
-
-        public ProductRecordCompanyStore(string record) => _record = record;
-
-        public bool AllFieldsValid()
-        {
-            foreach (IField field in Collection)
-            {
-                try
-                {
-                    field.Value(_record);
-                }
-                catch
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        private string Value(string key) => Collection[key].Value(_record);
-        public override string ProductId => KeyValue("ProductId");
-        public override Money PromotionalSplitPrice => KeyValue("ProductId").AsCurrency();
+        public abstract TSystemType AsSystemType();
     }
 
-    public abstract class ProductRecord
-    {
-        public abstract string ProductId {get;}
-        public abstract Money PromotionalSplitPrice { get; }
-    }
-
-    public sealed class RecordFieldCollection : IEnumerable<IField>
-    {
-        private readonly Dictionary<string, IField> _map = new Dictionary<string, IField>();
-
-        public void Add(IField field) => _map.Add(field.FieldKey(), field);
-
-        public IField this[string key] => _map[key];
-
-        public IEnumerator<IField> GetEnumerator() => _map.Values.GetEnumerator();
-
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-    }
-
-
-    public sealed class ProductId : IField
-    {
-        public string Value(string record) => record.Substring(0, 8-0);
-
-        public string FieldKey() => "ProductId";
-    }
-
-    public sealed class PromotionalSplitPrice : IField
-    {
-        public string Value(string record) => record.Substring(78, 86-78);
-
-        public string FieldKey() => "PromotionalSplitPrice";
-    }
-
-    public interface IField
-    {
-        public string Value(string record);
-        string FieldKey();
-    }
 
 }
