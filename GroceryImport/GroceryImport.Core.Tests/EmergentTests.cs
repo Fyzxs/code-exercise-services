@@ -198,40 +198,46 @@ ID       DESCRIPTION                                                 RegSing$ Pr
             actual.Should().Be(-6.1235m);
         }
 
-    //    [TestMethod, TestCategory("unit")]
-    //    public void RoundingTests()
-    //    {
-    //        /*
-    //ToEven,
-    //AwayFromZero,
-    //ToZero,
-    //ToNegativeInfinity,
-    //ToPositiveInfinity,
-    //        */
-    //        MidpointRounding rounding = MidpointRounding.ToNegativeInfinity;
+        [TestMethod, TestCategory("unit")]
+        public void RoundingTests()
+        {
+            /*
+    ToEven,
+    AwayFromZero,
+    ToZero,
+    ToNegativeInfinity,
+    ToPositiveInfinity,
+            */
+            MidpointRounding rounding = MidpointRounding.AwayFromZero;
 
-    //        //Math.Round(23.4, rounding).Should().Be(23);
-    //        //Math.Round(23.49, rounding).Should().Be(23);
-    //        //Math.Round(23.5, rounding).Should().Be(23);
-    //        //Math.Round(23.51, rounding).Should().Be(24);
-    //        //Math.Round(23.6, rounding).Should().Be(24);
 
-    //        //Math.Round(-23.4, rounding).Should().Be(-23);
-    //        //Math.Round(-23.49, rounding).Should().Be(-23);
-    //        //Math.Round(-23.5, rounding).Should().Be(-23);
-    //        //Math.Round(-23.51, rounding).Should().Be(-24);
-    //        //Math.Round(-23.6, rounding).Should().Be(-24);
+            Math.Round(23.49, rounding).Should().Be(23);
+            //Math.Round(23.5, rounding).Should().Be(23);
+            Math.Round(23.51, rounding).Should().Be(24);
 
-    //        Math.Round(6.12344, 4, rounding).Should().Be(6.1234);
-    //        Math.Round(6.12345, 4, rounding).Should().Be(6.1234);
-    //        Math.Round(6.12346, 4, rounding).Should().Be(6.1235);
-    //        Math.Round(6.12354, 4, rounding).Should().Be(6.1235);
-    //        Math.Round(6.12355, 4, rounding).Should().Be(6.1235);
-    //        Math.Round(6.12356, 4, rounding).Should().Be(6.1236);
+            Math.Round(-23.49, rounding).Should().Be(-23);
+            Math.Round(-23.5, rounding).Should().Be(-24);
+            Math.Round(-23.51, rounding).Should().Be(-24);
 
-    //        Math.Round(-6.12344, 4, rounding).Should().Be(-6.1234);
-    //        Math.Round(-6.12345, 4, rounding).Should().Be(-6.1234);
-    //        Math.Round(-6.12346, 4, rounding).Should().Be(-6.1235);
-    //    }
+            Math.Round(24.49, rounding).Should().Be(24);
+            //Math.Round(24.5, rounding).Should().Be(24);
+            Math.Round(24.51, rounding).Should().Be(25);
+
+            Math.Round(-24.49, rounding).Should().Be(-24);
+            Math.Round(-24.5, rounding).Should().Be(-25);
+            Math.Round(-24.51, rounding).Should().Be(-25);
+
+
+            //Math.Round(6.12344, 4, rounding).Should().Be(6.1234);
+            //Math.Round(6.12345, 4, rounding).Should().Be(6.1234);
+            //Math.Round(6.12346, 4, rounding).Should().Be(6.1235);
+            //Math.Round(6.12354, 4, rounding).Should().Be(6.1235);
+            //Math.Round(6.12355, 4, rounding).Should().Be(6.1235);
+            //Math.Round(6.12356, 4, rounding).Should().Be(6.1236);
+
+            //Math.Round(-6.12344, 4, rounding).Should().Be(-6.1234);
+            //Math.Round(-6.12345, 4, rounding).Should().Be(-6.1234);
+            //Math.Round(-6.12346, 4, rounding).Should().Be(-6.1235);
+        }
     }
 }
