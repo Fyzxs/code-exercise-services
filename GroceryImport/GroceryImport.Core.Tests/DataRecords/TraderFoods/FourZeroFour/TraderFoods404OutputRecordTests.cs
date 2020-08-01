@@ -243,5 +243,60 @@ namespace GroceryImport.Core.Tests.DataRecords.TraderFoods.FourZeroFour
             //Assert
             actual.Should().Be("Pound");
         }
+
+        [TestMethod, TestCategory("unit")]
+        public void IsPromotional_ShouldBeTrueGivenPromotionalPricing()
+        {
+            //Arrange
+            string lazy = "80000001 Kimchi-flavored white rice                                  00001234 00000100 00001472 00000000 00000000 00000000 NNYNNNNNN      18oz";
+            ProductRecord subject = new TraderFoods404OutputRecord(lazy);
+
+            //Act
+            bool actual = subject.IsPromotional();
+
+            //Assert
+            actual.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("unit")]
+        public void IsPromotional_ShouldBeFalseGivenNoPromotionalPricing()
+        {
+            //Arrange
+            string lazy = "80000001 Kimchi-flavored white rice                                  00001234 00000000 00001472 00000000 00000000 00000000 NNYNNNNNN      18oz";
+            ProductRecord subject = new TraderFoods404OutputRecord(lazy);
+
+            //Act
+            bool actual = subject.IsPromotional();
+
+            //Assert
+            actual.Should().BeFalse();
+        }
+        [TestMethod, TestCategory("unit")]
+        public void IsRegular_ShouldBeTrueGivenRegularPricing()
+        {
+            //Arrange
+            string lazy = "80000001 Kimchi-flavored white rice                                  00001234 00000100 00001472 00000000 00000000 00000000 NNYNNNNNN      18oz";
+            ProductRecord subject = new TraderFoods404OutputRecord(lazy);
+
+            //Act
+            bool actual = subject.IsRegular();
+
+            //Assert
+            actual.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("unit")]
+        public void IsRegular_ShouldBeFalseGivenNoRegularPricing()
+        {
+            //Arrange
+            string lazy = "80000001 Kimchi-flavored white rice                                  00000000 00000000 00000000 00000000 00000000 00000000 NNYNNNNNN      18oz";
+            ProductRecord subject = new TraderFoods404OutputRecord(lazy);
+
+            //Act
+            bool actual = subject.IsRegular();
+
+            //Assert
+            actual.Should().BeFalse();
+        }
     }
 }

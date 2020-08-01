@@ -21,4 +21,10 @@
     <ProjectReference Include="..\GroceryImport.Core\GroceryImport.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="InputSample\default.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

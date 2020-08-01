@@ -14,17 +14,20 @@ namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour
 
     public sealed partial class TraderFoods404InputRecord
     {
-        // Methods Sorted Alphabetically
-        public bool HasPromotionalPricing() => 0m != PromotionalSingularPrice() || 0m != PromotionalSplitPrice();
+        // Methods Sort by Scope then Alphabetically
+        public bool HasPromotionalPricing() => HasPricing(PromotionalSingularPrice()) || HasPricing(PromotionalSplitPrice());
 
-        public bool HasRegularPricing() => 0m != RegularSingularPrice() || 0m != RegularSplitPrice();
+        public bool HasRegularPricing() => HasPricing(RegularSingularPrice()) || HasPricing(RegularSplitPrice());
 
         public Flag IsPerWeight() => Flags().PerWeight();
 
-        public bool IsPromotionalSplitPrice() => HasPromotionalPricing() && 0 < PromotionalForQuantity();
-        
-        public bool IsRegularSplitPrice() => HasRegularPricing() && 0 < RegularForQuantity();
+        public bool IsPromotionalSplitPrice() => HasPricing(PromotionalSplitPrice()) && HasQuantity(PromotionalForQuantity());
+
+        public bool IsRegularSplitPrice() => HasPricing(RegularSplitPrice()) && HasQuantity(RegularForQuantity());
 
         public Flag IsTaxable() => Flags().Taxable();
+
+        private bool HasPricing(decimal price) => 0m != price;
+        private bool HasQuantity(int quantity) => 0 < quantity;
     }
 }
