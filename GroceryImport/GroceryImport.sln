@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroceryImport.Core.Tests", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9C4183E3-6243-4480-BFD6-B8D59D60D4F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroceryImport.Core", "GroceryImport.Core\GroceryImport.Core.csproj", "{A9F6A21F-2EE0-40EC-9B8A-F58A009B5A22}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{6A3F2155-4A09-4AD1-81F4-78C0B0AE3D0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A3F2155-4A09-4AD1-81F4-78C0B0AE3D0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A3F2155-4A09-4AD1-81F4-78C0B0AE3D0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9F6A21F-2EE0-40EC-9B8A-F58A009B5A22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9F6A21F-2EE0-40EC-9B8A-F58A009B5A22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9F6A21F-2EE0-40EC-9B8A-F58A009B5A22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9F6A21F-2EE0-40EC-9B8A-F58A009B5A22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
