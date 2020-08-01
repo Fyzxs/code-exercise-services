@@ -1,6 +1,6 @@
-using GroceryImport.Core.Tests.DataRecords.FieldTypes;
+using GroceryImport.Core.DataRecords.FieldTypes;
 
-namespace GroceryImport.Core.Tests.DataRecords.TraderFoods.FourZeroFour.InputFields
+namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour.InputFields
 {
     internal sealed class TraderFoods404PromotionalSplitPrice : CurrencyField
     {

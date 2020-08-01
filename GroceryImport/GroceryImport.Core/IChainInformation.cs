@@ -1,4 +1,4 @@
-namespace GroceryImport.Core.Tests
+namespace GroceryImport.Core
 {
     public interface IChainInformation
     {

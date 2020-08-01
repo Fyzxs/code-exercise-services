@@ -1,6 +1,6 @@
 using System;
 
-namespace GroceryImport.Core.Tests.Library.Maths
+namespace GroceryImport.Core.Library.Maths
 {
     public interface IRounding
     {

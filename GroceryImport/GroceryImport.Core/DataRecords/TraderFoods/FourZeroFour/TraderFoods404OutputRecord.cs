@@ -1,7 +1,7 @@
-using GroceryImport.Core.Tests.DataRecords.ProductRecords;
-using GroceryImport.Core.Tests.DataRecords.TraderFoods.FourZeroFour.OutputFields;
+using GroceryImport.Core.DataRecords.ProductRecords;
+using GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour.OutputFields;
 
-namespace GroceryImport.Core.Tests.DataRecords.TraderFoods.FourZeroFour
+namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour
 {
     public sealed class TraderFoods404OutputRecord : ProductRecord
     {

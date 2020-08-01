@@ -1,5 +1,5 @@
 using FluentAssertions;
-using GroceryImport.Core.Tests.DataRecords.TraderFoods.FourZeroFour;
+using GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GroceryImport.Core.Tests

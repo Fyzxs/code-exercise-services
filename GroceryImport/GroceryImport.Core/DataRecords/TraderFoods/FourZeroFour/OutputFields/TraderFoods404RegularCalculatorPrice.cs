@@ -1,6 +1,6 @@
-using GroceryImport.Core.Tests.DataRecords.ProductRecords;
+using GroceryImport.Core.DataRecords.ProductRecords;
 
-namespace GroceryImport.Core.Tests.DataRecords.TraderFoods.FourZeroFour.OutputFields
+namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour.OutputFields
 {
     public sealed class TraderFoods404RegularCalculatorPrice : CalculatorPrice
     {

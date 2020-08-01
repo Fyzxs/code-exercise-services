@@ -1,6 +1,6 @@
-using GroceryImport.Core.Tests.Library;
+using GroceryImport.Core.Library;
 
-namespace GroceryImport.Core.Tests.DataRecords.ProductRecords
+namespace GroceryImport.Core.DataRecords.ProductRecords
 {
     public abstract class UnitOfMeasure : ToSystem<string>
     {

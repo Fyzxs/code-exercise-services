@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace GroceryImport.Core.Tests.Library
+namespace GroceryImport.Core.Library
 {
     [DebuggerDisplay("{AsSystemType()}")]
     public abstract class ToSystem<TSystemType>

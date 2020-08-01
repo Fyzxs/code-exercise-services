@@ -1,4 +1,4 @@
-namespace GroceryImport.Core.Tests.DataRecords.FieldTypes
+namespace GroceryImport.Core.DataRecords.FieldTypes
 {
     public abstract class FlagsField : Field<string>
     {

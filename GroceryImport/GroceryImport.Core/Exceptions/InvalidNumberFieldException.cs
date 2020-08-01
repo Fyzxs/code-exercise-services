@@ -1,6 +1,6 @@
 using System;
 
-namespace GroceryImport.Core.Tests.Exceptions
+namespace GroceryImport.Core.Exceptions
 {
     public sealed class InvalidNumberFieldException : Exception
     {

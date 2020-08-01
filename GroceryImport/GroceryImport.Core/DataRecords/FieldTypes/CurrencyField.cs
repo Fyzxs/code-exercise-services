@@ -1,6 +1,6 @@
-using GroceryImport.Core.Tests.Exceptions;
+using GroceryImport.Core.Exceptions;
 
-namespace GroceryImport.Core.Tests.DataRecords.FieldTypes
+namespace GroceryImport.Core.DataRecords.FieldTypes
 {
     public abstract class CurrencyField : Field<decimal>
     {

@@ -1,4 +1,4 @@
-namespace GroceryImport.Core.Tests.DataRecords.ProductRecords
+namespace GroceryImport.Core.DataRecords.ProductRecords
 {
     public abstract class ProductRecord
     {

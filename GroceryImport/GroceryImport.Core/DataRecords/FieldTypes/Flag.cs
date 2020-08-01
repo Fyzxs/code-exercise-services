@@ -1,6 +1,6 @@
-using GroceryImport.Core.Tests.Library;
+using GroceryImport.Core.Library;
 
-namespace GroceryImport.Core.Tests.DataRecords.FieldTypes
+namespace GroceryImport.Core.DataRecords.FieldTypes
 {
     public abstract class Flag : ToSystem<bool>
     {

@@ -1,4 +1,4 @@
-namespace GroceryImport.Core.Tests.DataRecords.TraderFoods
+namespace GroceryImport.Core.DataRecords.TraderFoods
 {
     public sealed class TraderFoodsInformation : IChainInformation
     {

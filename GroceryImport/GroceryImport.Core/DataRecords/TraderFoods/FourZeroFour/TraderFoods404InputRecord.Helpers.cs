@@ -1,6 +1,6 @@
-using GroceryImport.Core.Tests.DataRecords.FieldTypes;
+using GroceryImport.Core.DataRecords.FieldTypes;
 
-namespace GroceryImport.Core.Tests.DataRecords.TraderFoods.FourZeroFour
+namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour
 {
     public sealed partial class TraderFoods404InputRecord
     {
