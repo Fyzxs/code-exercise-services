@@ -3,23 +3,26 @@ using GroceryImport.Core.DataRecords.ProductRecords;
 
 namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour.OutputFields
 {
-    public sealed class TraderFoods404DisplayPrice : DisplayPrice
+    public sealed class TraderFoods404SplitDisplayPrice : DisplayPrice
     {
-        private readonly bool _isSplitPrice;
         private readonly CurrencyField _splitPrice;
         private readonly NumberField _forQuantity;
 
-        public TraderFoods404DisplayPrice(in bool isSplitPrice, CurrencyField splitPrice, NumberField forQuantity)
+        public TraderFoods404SplitDisplayPrice(CurrencyField splitPrice, NumberField forQuantity)
         {
-            _isSplitPrice = isSplitPrice;
             _splitPrice = splitPrice;
             _forQuantity = forQuantity;
         }
-        public override string AsSystemType()
-        {
-            if (_isSplitPrice) return $"{_forQuantity.AsSystemType()} for {_splitPrice.AsCurrencyString()}";
+        public override string AsSystemType() => $"{_forQuantity.AsSystemType()} for {_splitPrice.AsCurrencyString()}";
+    }
+    public sealed class TraderFoods404SingularDisplayPrice : DisplayPrice
+    {
+        private readonly CurrencyField _price;
 
-            return _splitPrice.AsCurrencyString();
+        public TraderFoods404SingularDisplayPrice(CurrencyField price)
+        {
+            _price = price;
         }
+        public override string AsSystemType() => _price.AsCurrencyString();
     }
 }

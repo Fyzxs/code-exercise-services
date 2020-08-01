@@ -2,7 +2,7 @@ using GroceryImport.Core.DataRecords.FieldTypes;
 
 namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour.InputFields
 {
-    internal sealed class TraderFoods404Flags : FlagsField
+    public sealed class TraderFoods404Flags : FlagsField
     {
         private const int StartIndexOnesBased = 124;
         private const int EndIndexOnesBased = 132;

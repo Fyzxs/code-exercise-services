@@ -2,6 +2,14 @@ using GroceryImport.Core.DataRecords.FieldTypes;
 
 namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour
 {
+
+    public partial interface ITraderFoods404InputRecord
+    {
+        Flag IsPerWeight();
+        bool IsPromotionalSplitPrice();
+        bool IsRegularSplitPrice();
+        Flag IsTaxable();
+    }
     public sealed partial class TraderFoods404InputRecord
     {
         // Helper Methods Sorted Alphabetically

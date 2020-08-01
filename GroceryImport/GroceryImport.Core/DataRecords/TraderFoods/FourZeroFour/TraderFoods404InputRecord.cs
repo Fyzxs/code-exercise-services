@@ -3,7 +3,22 @@ using GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour.InputFields;
 
 namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour
 {
-    public sealed partial class TraderFoods404InputRecord
+
+    public partial interface ITraderFoods404InputRecord
+    {
+        NumberField ProductId();
+        StringField ProductDescription();
+        CurrencyField RegularSingularPrice();
+        CurrencyField PromotionalSingularPrice();
+        CurrencyField RegularSplitPrice();
+        CurrencyField PromotionalSplitPrice();
+        NumberField RegularForQuantity();
+        NumberField PromotionalForQuantity();
+        TraderFoods404Flags Flags();
+        StringField ProductSize();
+    }
+
+    public sealed partial class TraderFoods404InputRecord : ITraderFoods404InputRecord
     {
         private readonly Record _record;
 
@@ -21,7 +36,7 @@ namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour
         public CurrencyField PromotionalSplitPrice() => new TraderFoods404PromotionalSplitPrice(_record);
         public NumberField RegularForQuantity() => new TraderFoods404RegularForQuantity(_record);
         public NumberField PromotionalForQuantity() => new TraderFoods404PromotionalForQuantity(_record);
-        private TraderFoods404Flags Flags() => new TraderFoods404Flags(_record);
+        public TraderFoods404Flags Flags() => new TraderFoods404Flags(_record);
         public StringField ProductSize() => new TraderFoods404ProductSize(_record);
     }
 }

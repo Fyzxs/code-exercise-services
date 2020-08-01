@@ -7,12 +7,13 @@ namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour
     {
         private const string StoreIdValue = "404";
 
-        private readonly TraderFoods404InputRecord _inputRecord;
+        private readonly ITraderFoods404InputRecord _inputRecord;
         private readonly IChainInformation _chainInformation;
 
         public TraderFoods404OutputRecord(string inputRecord) :this(new TraderFoods404InputRecord(inputRecord), new TraderFoodsInformation()){}
 
-        private TraderFoods404OutputRecord(TraderFoods404InputRecord inputRecord, IChainInformation chainInformation)
+        //Note: Future versions should make this ctor private as it shouldn't be used outside of tests. Use black magic for tests
+        public TraderFoods404OutputRecord(ITraderFoods404InputRecord inputRecord, IChainInformation chainInformation)
         {
             _inputRecord = inputRecord;
             _chainInformation = chainInformation;
@@ -20,7 +21,6 @@ namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour
         
         //Methods are Alphabetical
 
-        //TODO: Prices are not correct for non-split
         public override string CompanyId() => _chainInformation.CompanyId();
         
         public override int ProductId() => _inputRecord.ProductId();

@@ -4,10 +4,15 @@ namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour.OutputFields
 {
     public sealed class TraderFoods404RegularCalculatorPrice : CalculatorPrice
     {
-        private readonly TraderFoods404InputRecord _inputRecord;
+        private readonly ITraderFoods404InputRecord _inputRecord;
 
-        public TraderFoods404RegularCalculatorPrice(TraderFoods404InputRecord inputRecord) => _inputRecord = inputRecord;
+        public TraderFoods404RegularCalculatorPrice(ITraderFoods404InputRecord inputRecord) => _inputRecord = inputRecord;
 
-        public override decimal AsSystemType() => new TraderFoods404CalculatorPrice(_inputRecord.IsRegularSplitPrice(), _inputRecord.RegularSplitPrice(), _inputRecord.RegularForQuantity());
+        public override decimal AsSystemType()
+        {
+            if (_inputRecord.IsRegularSplitPrice()) return new TraderFoods404CalculatorSplitPrice(_inputRecord.RegularSplitPrice(), _inputRecord.RegularForQuantity());
+
+            return new TraderFoods404CalculatorSingularPrice(_inputRecord.RegularSingularPrice());
+        }
     }
 }
