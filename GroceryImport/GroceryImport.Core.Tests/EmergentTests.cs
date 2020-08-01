@@ -1,6 +1,7 @@
 using FluentAssertions;
 using GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+// ReSharper disable TestFileNameWarning
 
 namespace GroceryImport.Core.Tests
 {
@@ -102,6 +103,19 @@ ID       DESCRIPTION                                                 RegSing$ Pr
 
             //Assert
             actual.Should().Be("2 for $13.00");
+        }
+
+        [TestMethod, TestCategory("unit")]
+        public void RegularDisplayPriceShouldShowNonSplit()
+        {
+            //Arrange
+            TraderFoods404OutputRecord traderFoods404InputRecord = new TraderFoods404OutputRecord("40123401 Marlboro Cigarettes                                         00001000 00000549 00000000 00000000 00000000 00000000 YNNNNNNNN          ");
+
+            //Act
+            string actual = traderFoods404InputRecord.RegularDisplayPrice();
+
+            //Assert
+            actual.Should().Be("$5.49");
         }
         [TestMethod, TestCategory("unit")]
         public void TaxRateShouldBeExpectedGivenTaxable()

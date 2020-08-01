@@ -20,6 +20,7 @@ namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour
         
         //Methods are Alphabetical
 
+        //TODO: Prices are not correct for non-split
         public override string CompanyId() => _chainInformation.CompanyId();
         
         public override int ProductId() => _inputRecord.ProductId();
