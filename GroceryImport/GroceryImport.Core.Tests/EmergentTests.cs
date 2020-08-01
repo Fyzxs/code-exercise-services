@@ -80,7 +80,7 @@ ID       DESCRIPTION                                                 RegSing$ Pr
         }
     }
 
-    public sealed class TraderFoods404OutputRecordCollection : OutputRecordCollection
+    public sealed class TraderFoods404OutputRecordCollection : ProductRecordCollection
     {
         public TraderFoods404OutputRecordCollection(string fileLocation) :this(new StreamReader(fileLocation)){}
         public TraderFoods404OutputRecordCollection(StreamReader streamReader) : base(streamReader, new TraderFoods404ProductRecordFactory(), new TraderFoods404InputRecordValidator()){}
