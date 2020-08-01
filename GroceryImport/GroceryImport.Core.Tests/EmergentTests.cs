@@ -1,10 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 using FluentAssertions;
-using FluentAssertions.Common;
 using GroceryImport.Core.Tests.DataRecords.TraderFoods.FourZeroFour;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -24,10 +18,10 @@ ID       DESCRIPTION                                                 RegSing$ Pr
         public void ProductDescriptionShouldBeExpected()
         {
             //Arrange
-            CompanyStoreInputRecord companyStoreInputRecord = new CompanyStoreInputRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
+            TraderFoods404InputRecord traderFoods404InputRecord = new TraderFoods404InputRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
 
             //Act
-            string actual = companyStoreInputRecord.ProductDescription();
+            string actual = traderFoods404InputRecord.ProductDescription();
 
             //Assert
             actual.Should().Be("Generic Soda 12-pack");
@@ -37,10 +31,10 @@ ID       DESCRIPTION                                                 RegSing$ Pr
         public void ProductIdShouldBeExpected()
         {
             //Arrange
-            CompanyStoreInputRecord companyStoreInputRecord = new CompanyStoreInputRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
+            TraderFoods404InputRecord traderFoods404InputRecord = new TraderFoods404InputRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
 
             //Act
-            int actual = companyStoreInputRecord.ProductId();
+            int actual = traderFoods404InputRecord.ProductId();
 
             //Assert
             actual.Should().Be(14963801);
@@ -50,10 +44,10 @@ ID       DESCRIPTION                                                 RegSing$ Pr
         public void PromotionalSingularPriceShouldBeExpected()
         {
             //Arrange
-            CompanyStoreInputRecord companyStoreInputRecord = new CompanyStoreInputRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
+            TraderFoods404InputRecord traderFoods404InputRecord = new TraderFoods404InputRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
 
             //Act
-            decimal actual = companyStoreInputRecord.PromotionalSingularPrice();
+            decimal actual = traderFoods404InputRecord.PromotionalSingularPrice();
 
             //Assert
             actual.Should().Be(5.49m);
@@ -62,10 +56,10 @@ ID       DESCRIPTION                                                 RegSing$ Pr
         public void PromotionalSingularPriceShouldHandleNegatives()
         {
             //Arrange
-            CompanyStoreInputRecord companyStoreInputRecord = new CompanyStoreInputRecord("14963801 Generic Soda 12-pack                                        00000000 -0000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
+            TraderFoods404InputRecord traderFoods404InputRecord = new TraderFoods404InputRecord("14963801 Generic Soda 12-pack                                        00000000 -0000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
 
             //Act
-            decimal actual = companyStoreInputRecord.PromotionalSingularPrice();
+            decimal actual = traderFoods404InputRecord.PromotionalSingularPrice();
 
             //Assert
             actual.Should().Be(-5.49m);
@@ -75,10 +69,10 @@ ID       DESCRIPTION                                                 RegSing$ Pr
         public void PerWeightShouldBeFalse()
         {
             //Arrange
-            CompanyStoreInputRecord companyStoreInputRecord = new CompanyStoreInputRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
+            TraderFoods404InputRecord traderFoods404InputRecord = new TraderFoods404InputRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
 
             //Act
-            bool actual = companyStoreInputRecord.IsPerWeight();
+            bool actual = traderFoods404InputRecord.IsPerWeight();
 
             //Assert
             actual.Should().BeFalse();
@@ -88,10 +82,10 @@ ID       DESCRIPTION                                                 RegSing$ Pr
         public void TaxableShouldBeTrue()
         {
             //Arrange
-            CompanyStoreInputRecord companyStoreInputRecord = new CompanyStoreInputRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
+            TraderFoods404InputRecord traderFoods404InputRecord = new TraderFoods404InputRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
 
             //Act
-            bool actual = companyStoreInputRecord.IsTaxable();
+            bool actual = traderFoods404InputRecord.IsTaxable();
 
             //Assert
             actual.Should().BeTrue();
@@ -101,10 +95,10 @@ ID       DESCRIPTION                                                 RegSing$ Pr
         public void RegularDisplayPriceShouldShowSplit()
         {
             //Arrange
-            CompanyStoreProductRecord companyStoreInputRecord = new CompanyStoreProductRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
+            TraderFoods404OutputRecord traderFoods404InputRecord = new TraderFoods404OutputRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
 
             //Act
-            string actual = companyStoreInputRecord.RegularDisplayPrice();
+            string actual = traderFoods404InputRecord.RegularDisplayPrice();
 
             //Assert
             actual.Should().Be("2 for $13.00");
@@ -113,10 +107,10 @@ ID       DESCRIPTION                                                 RegSing$ Pr
         public void TaxRateShouldBeExpectedGivenTaxable()
         {
             //Arrange
-            CompanyStoreProductRecord companyStoreInputRecord = new CompanyStoreProductRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
+            TraderFoods404OutputRecord traderFoods404InputRecord = new TraderFoods404OutputRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNYNNNN   12x12oz");
 
             //Act
-            double actual = companyStoreInputRecord.TaxRate();
+            double actual = traderFoods404InputRecord.TaxRate();
 
             //Assert
             actual.Should().Be(.07775);
@@ -125,10 +119,10 @@ ID       DESCRIPTION                                                 RegSing$ Pr
         public void TaxRateShouldBeZeroGivenNotTaxable()
         {
             //Arrange
-            CompanyStoreProductRecord companyStoreInputRecord = new CompanyStoreProductRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNNNNNN   12x12oz");
+            TraderFoods404OutputRecord traderFoods404InputRecord = new TraderFoods404OutputRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNNNNNN   12x12oz");
 
             //Act
-            double actual = companyStoreInputRecord.TaxRate();
+            double actual = traderFoods404InputRecord.TaxRate();
 
             //Assert
             actual.Should().Be(0d);
@@ -137,10 +131,10 @@ ID       DESCRIPTION                                                 RegSing$ Pr
         public void RegularCalculatorPriceShouldBeExpectedValue()
         {
             //Arrange
-            CompanyStoreProductRecord companyStoreInputRecord = new CompanyStoreProductRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNNNNNN   12x12oz");
+            TraderFoods404OutputRecord traderFoods404InputRecord = new TraderFoods404OutputRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00001300 00000000 00000002 00000000 NNNNNNNNN   12x12oz");
 
             //Act
-            decimal actual = companyStoreInputRecord.RegularCalculatorPrice();
+            decimal actual = traderFoods404InputRecord.RegularCalculatorPrice();
 
             //Assert
             actual.Should().Be(6.5m);
@@ -150,10 +144,10 @@ ID       DESCRIPTION                                                 RegSing$ Pr
         public void RegularCalculatorPriceShouldBeExactToFourDecimalRoundingDownOn5()
         {
             //Arrange
-            CompanyStoreProductRecord companyStoreInputRecord = new CompanyStoreProductRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00612345 00000000 00001000 00000000 NNNNNNNNN   12x12oz");
+            TraderFoods404OutputRecord traderFoods404InputRecord = new TraderFoods404OutputRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00612345 00000000 00001000 00000000 NNNNNNNNN   12x12oz");
 
             //Act
-            decimal actual = companyStoreInputRecord.RegularCalculatorPrice();
+            decimal actual = traderFoods404InputRecord.RegularCalculatorPrice();
 
             //Assert
             actual.Should().Be(6.1235m);//.Be(6.1234m); Error due to .Net MidpointRounding limitations
@@ -163,10 +157,10 @@ ID       DESCRIPTION                                                 RegSing$ Pr
         public void RegularCalculatorPriceShouldBeExactToFourDecimalRoundingOn6()
         {
             //Arrange
-            CompanyStoreProductRecord companyStoreInputRecord = new CompanyStoreProductRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00612346 00000000 00001000 00000000 NNNNNNNNN   12x12oz");
+            TraderFoods404OutputRecord traderFoods404InputRecord = new TraderFoods404OutputRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 00612346 00000000 00001000 00000000 NNNNNNNNN   12x12oz");
 
             //Act
-            decimal actual = companyStoreInputRecord.RegularCalculatorPrice();
+            decimal actual = traderFoods404InputRecord.RegularCalculatorPrice();
 
             //Assert
             actual.Should().Be(6.1235m);
@@ -176,10 +170,10 @@ ID       DESCRIPTION                                                 RegSing$ Pr
         public void RegularCalculatorPriceShouldBeExactToFourDecimalRoundingOn4WhenNegative()
         {
             //Arrange
-            CompanyStoreProductRecord companyStoreInputRecord = new CompanyStoreProductRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 -0612344 00000000 00001000 00000000 NNNNNNNNN   12x12oz");
+            TraderFoods404OutputRecord traderFoods404InputRecord = new TraderFoods404OutputRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 -0612344 00000000 00001000 00000000 NNNNNNNNN   12x12oz");
 
             //Act
-            decimal actual = companyStoreInputRecord.RegularCalculatorPrice();
+            decimal actual = traderFoods404InputRecord.RegularCalculatorPrice();
 
             //Assert
             actual.Should().Be(-6.1234m);
@@ -189,10 +183,10 @@ ID       DESCRIPTION                                                 RegSing$ Pr
         public void RegularCalculatorPriceShouldBeExactToFourDecimalRoundingOn6WhenNegative()
         {
             //Arrange
-            CompanyStoreProductRecord companyStoreInputRecord = new CompanyStoreProductRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 -0612346 00000000 00001000 00000000 NNNNNNNNN   12x12oz");
+            TraderFoods404OutputRecord traderFoods404InputRecord = new TraderFoods404OutputRecord("14963801 Generic Soda 12-pack                                        00000000 00000549 -0612346 00000000 00001000 00000000 NNNNNNNNN   12x12oz");
 
             //Act
-            decimal actual = companyStoreInputRecord.RegularCalculatorPrice();
+            decimal actual = traderFoods404InputRecord.RegularCalculatorPrice();
 
             //Assert
             actual.Should().Be(-6.1235m);
