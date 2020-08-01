@@ -6,6 +6,7 @@ before_build:
 build:
   project: GroceryImport/GroceryImport.sln
   verbosity: detailed
+  publish_core_console: true      # Package .NET Core console projects
 
 test_script:
   - vstest.console /logger:Appveyor GroceryImport\GroceryImport.Core.Tests\bin\Debug\netcoreapp3.1\GroceryImport.Core.Tests.dll
