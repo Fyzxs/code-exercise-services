@@ -1,6 +1,6 @@
-using GroceryImport.Core.Tests.BaseTypes;
+using GroceryImport.Core.Tests.DataRecords.BaseTypes;
 
-namespace GroceryImport.Core.Tests.CompanyStore.Fields
+namespace GroceryImport.Core.Tests.DataRecords.TraderFoods.FourZeroFour.Fields
 {
     internal sealed class Flags : FlagsField
     {

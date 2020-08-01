@@ -1,9 +1,9 @@
-using GroceryImport.Core.Tests.BaseTypes;
-using GroceryImport.Core.Tests.CompanyStore.Fields;
-using GroceryImport.Core.Tests.CompanyStore.Maths;
-using GroceryImport.Core.Tests.ProductRecords;
+using GroceryImport.Core.Tests.DataRecords.BaseTypes;
+using GroceryImport.Core.Tests.DataRecords.ProductRecords;
+using GroceryImport.Core.Tests.DataRecords.TraderFoods.FourZeroFour.Fields;
+using GroceryImport.Core.Tests.Library.Maths;
 
-namespace GroceryImport.Core.Tests.CompanyStore
+namespace GroceryImport.Core.Tests.DataRecords.TraderFoods.FourZeroFour
 {
     public sealed class CompanyStoreInputRecord
     {
@@ -32,13 +32,28 @@ namespace GroceryImport.Core.Tests.CompanyStore
         public bool IsPromotionalSplitPrice() => PromotionalForQuantity() > 0;
     }
 
+    public sealed class TraderFoodsInformation : IChainInformation
+    {
+        public string CompanyId() => "TradeFoodsUniqueId";
+    }
+
+    public interface IChainInformation
+    {
+        string CompanyId();
+    }
+
     public sealed class CompanyStoreProductRecord : ProductRecord
     {
         private readonly CompanyStoreInputRecord _inputRecord;
+        private readonly IChainInformation _chainInformation;
 
-        public CompanyStoreProductRecord(string inputRecord) :this(new CompanyStoreInputRecord(inputRecord)){}
+        public CompanyStoreProductRecord(string inputRecord) :this(new CompanyStoreInputRecord(inputRecord), new TraderFoodsInformation()){}
 
-        private CompanyStoreProductRecord(CompanyStoreInputRecord inputRecord) => _inputRecord = inputRecord;
+        private CompanyStoreProductRecord(CompanyStoreInputRecord inputRecord, IChainInformation chainInformation)
+        {
+            _inputRecord = inputRecord;
+            _chainInformation = chainInformation;
+        }
 
         public string CompanyId() => "THE_COMPANY_ID";
         public string StoreId() => "THE_COMPANY_STORE_ID";
@@ -61,36 +76,18 @@ namespace GroceryImport.Core.Tests.CompanyStore
 
     public sealed class CompanyStoreRegularCalculatorPrice : CalculatorPrice
     {
-        private readonly IRounding _rounding;
         private readonly CompanyStoreInputRecord _inputRecord;
 
-        public CompanyStoreRegularCalculatorPrice(CompanyStoreInputRecord inputRecord) : this(inputRecord,
-            new InexactRounding())
-        {}
-
-        private CompanyStoreRegularCalculatorPrice(CompanyStoreInputRecord inputRecord, IRounding rounding)
-        {
-            _inputRecord = inputRecord;
-            _rounding = rounding;
-        }
+        public CompanyStoreRegularCalculatorPrice(CompanyStoreInputRecord inputRecord) => _inputRecord = inputRecord;
 
         public override decimal AsSystemType() => new CompanyStoreCalculatorPrice(_inputRecord.IsRegularSplitPrice(), _inputRecord.RegularSplitPrice(), _inputRecord.RegularForQuantity());
     }
 
     public sealed class CompanyStorePromotionalCalculatorPrice : CalculatorPrice
     {
-        private readonly IRounding _rounding;
         private readonly CompanyStoreInputRecord _inputRecord;
 
-        public CompanyStorePromotionalCalculatorPrice(CompanyStoreInputRecord inputRecord) : this(inputRecord,
-            new InexactRounding())
-        { }
-
-        private CompanyStorePromotionalCalculatorPrice(CompanyStoreInputRecord inputRecord, IRounding rounding)
-        {
-            _inputRecord = inputRecord;
-            _rounding = rounding;
-        }
+        public CompanyStorePromotionalCalculatorPrice(CompanyStoreInputRecord inputRecord) => _inputRecord = inputRecord;
 
         public override decimal AsSystemType() => new CompanyStoreCalculatorPrice(_inputRecord.IsPromotionalSplitPrice(), _inputRecord.PromotionalSplitPrice(), _inputRecord.PromotionalForQuantity());
     }

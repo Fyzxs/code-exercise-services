@@ -1,6 +1,6 @@
 using GroceryImport.Core.Tests.Exceptions;
 
-namespace GroceryImport.Core.Tests.BaseTypes
+namespace GroceryImport.Core.Tests.DataRecords.BaseTypes
 {
     public class NumberField : Field<int>
     {

@@ -1,4 +1,4 @@
-namespace GroceryImport.Core.Tests.BaseTypes
+namespace GroceryImport.Core.Tests.DataRecords.BaseTypes
 {
     public abstract class StringField : Field<string>
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using FluentAssertions;
 using FluentAssertions.Common;
-using GroceryImport.Core.Tests.CompanyStore;
+using GroceryImport.Core.Tests.DataRecords.TraderFoods.FourZeroFour;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GroceryImport.Core.Tests

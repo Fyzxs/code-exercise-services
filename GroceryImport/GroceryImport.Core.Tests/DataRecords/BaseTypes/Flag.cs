@@ -1,4 +1,6 @@
-namespace GroceryImport.Core.Tests.BaseTypes
+using GroceryImport.Core.Tests.Library;
+
+namespace GroceryImport.Core.Tests.DataRecords.BaseTypes
 {
     public abstract class Flag : ToSystem<bool>
     {

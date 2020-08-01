@@ -1,4 +1,6 @@
-namespace GroceryImport.Core.Tests.ProductRecords
+using GroceryImport.Core.Tests.Library;
+
+namespace GroceryImport.Core.Tests.DataRecords.ProductRecords
 {
     public abstract class TaxRate : ToSystem<double>
     {
