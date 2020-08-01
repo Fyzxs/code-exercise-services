@@ -1,8 +1,6 @@
 ﻿using FluentAssertions;
-using GroceryImport.Core.DataRecords.FieldTypes;
 using GroceryImport.Core.DataRecords.ProductRecords;
 using GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour;
-using GroceryImport.Core.Tests.Fakes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GroceryImport.Core.Tests.DataRecords.TraderFoods.FourZeroFour

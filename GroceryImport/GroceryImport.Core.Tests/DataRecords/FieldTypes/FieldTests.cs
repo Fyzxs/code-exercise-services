@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using GroceryImport.Core.DataRecords.FieldTypes;
-using GroceryImport.Core.Tests.Fakes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GroceryImport.Core.Tests.DataRecords.FieldTypes

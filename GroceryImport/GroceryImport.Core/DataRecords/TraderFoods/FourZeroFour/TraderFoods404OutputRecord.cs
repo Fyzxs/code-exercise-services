@@ -5,7 +5,6 @@ namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour
 {
     public sealed class TraderFoods404OutputRecord : ProductRecord
     {
-        private const string StoreIdValue = "404";
 
         private readonly ITraderFoods404InputRecord _inputRecord;
         private readonly IChainInformation _chainInformation;
@@ -22,6 +21,10 @@ namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour
         //Methods are Alphabetical
 
         public override string CompanyId() => _chainInformation.CompanyId();
+
+        public override bool IsPromotional() => _inputRecord.HasPromotionalPricing();
+
+        public override bool IsRegular() => _inputRecord.HasRegularPricing();
         
         public override int ProductId() => _inputRecord.ProductId();
 
@@ -36,12 +39,11 @@ namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour
         public override decimal RegularCalculatorPrice() => new TraderFoods404RegularCalculatorPrice(_inputRecord);
 
         public override string RegularDisplayPrice() => new TraderFoods404RegularDisplayPrice(_inputRecord);
-        
-        public override string StoreId() => $"{CompanyId()}:{StoreIdValue}";
+
+        public override string StoreId() => new TraderFoods404StoreId(_chainInformation);
 
         public override double TaxRate() => new TraderFoods404TaxRate(_inputRecord.IsTaxable());
         
         public override string UnitOfMeasure() => new TraderFoods404UnitOfMeasure(_inputRecord);
-
     }
 }

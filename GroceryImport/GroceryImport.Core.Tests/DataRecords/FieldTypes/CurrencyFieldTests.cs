@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using FluentAssertions;
 using GroceryImport.Core.DataRecords.FieldTypes;
 using GroceryImport.Core.Exceptions;

@@ -13,5 +13,7 @@ namespace GroceryImport.Core.DataRecords.ProductRecords
         public abstract string StoreId();
         public abstract double TaxRate();
         public abstract string UnitOfMeasure();
+        public abstract bool IsPromotional();
+        public abstract bool IsRegular();
     }
 }

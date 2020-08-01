@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using GroceryImport.Core.DataRecords.ProductRecords;
-using GroceryImport.Core.Library;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GroceryImport.Core.Tests.DataRecords.ProductRecords
