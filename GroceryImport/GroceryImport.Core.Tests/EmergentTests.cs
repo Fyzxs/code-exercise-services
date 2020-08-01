@@ -115,8 +115,49 @@ ID       DESCRIPTION                                                 RegSing$ Pr
             string actual = traderFoods404InputRecord.RegularDisplayPrice();
 
             //Assert
+            actual.Should().Be("$10.00");
+        }
+
+        [TestMethod, TestCategory("unit")]
+        public void PromotionalDisplayPriceShouldShowNonSplit()
+        {
+            //Arrange
+            TraderFoods404OutputRecord traderFoods404InputRecord = new TraderFoods404OutputRecord("40123401 Marlboro Cigarettes                                         00001000 00000549 00000000 00000000 00000000 00000000 YNNNNNNNN          ");
+
+            //Act
+            string actual = traderFoods404InputRecord.PromotionalDisplayPrice();
+
+            //Assert
             actual.Should().Be("$5.49");
         }
+
+
+        [TestMethod, TestCategory("unit")]
+        public void RegularCalculatorPriceShouldShowNonSplit()
+        {
+            //Arrange
+            TraderFoods404OutputRecord traderFoods404InputRecord = new TraderFoods404OutputRecord("40123401 Marlboro Cigarettes                                         00001000 00000549 00000000 00000000 00000000 00000000 YNNNNNNNN          ");
+
+            //Act
+            decimal actual = traderFoods404InputRecord.RegularCalculatorPrice();
+
+            //Assert
+            actual.Should().Be(10.00m);
+        }
+
+        [TestMethod, TestCategory("unit")]
+        public void PromotionalCalculatorPriceShouldShowNonSplit()
+        {
+            //Arrange
+            TraderFoods404OutputRecord traderFoods404InputRecord = new TraderFoods404OutputRecord("40123401 Marlboro Cigarettes                                         00001000 00000549 00000000 00000000 00000000 00000000 YNNNNNNNN          ");
+
+            //Act
+            decimal actual = traderFoods404InputRecord.PromotionalCalculatorPrice();
+
+            //Assert
+            actual.Should().Be(5.49m);
+        }
+
         [TestMethod, TestCategory("unit")]
         public void TaxRateShouldBeExpectedGivenTaxable()
         {
