@@ -3,12 +3,12 @@ using GroceryImport.Core.DataRecords.ProductRecords;
 
 namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour.OutputFields
 {
-    public sealed class TraderFoods404CalculatorSingularPrice : CalculatorPrice
+    public sealed class TraderFoods404SingularDisplayPrice : DisplayPrice
     {
         private readonly CurrencyField _price;
-        
-        public TraderFoods404CalculatorSingularPrice(CurrencyField price) => _price = price;
 
-        public override decimal AsSystemType() => _price;
+        public TraderFoods404SingularDisplayPrice(CurrencyField price) => _price = price;
+
+        public override string AsSystemType() => _price.AsCurrencyString();
     }
 }

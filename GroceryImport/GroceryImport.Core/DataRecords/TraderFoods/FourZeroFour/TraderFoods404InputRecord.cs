@@ -14,7 +14,6 @@ namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour
         CurrencyField PromotionalSplitPrice();
         NumberField RegularForQuantity();
         NumberField PromotionalForQuantity();
-        TraderFoods404Flags Flags();
         StringField ProductSize();
     }
 
@@ -36,7 +35,7 @@ namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour
         public CurrencyField PromotionalSplitPrice() => new TraderFoods404PromotionalSplitPrice(_record);
         public NumberField RegularForQuantity() => new TraderFoods404RegularForQuantity(_record);
         public NumberField PromotionalForQuantity() => new TraderFoods404PromotionalForQuantity(_record);
-        public TraderFoods404Flags Flags() => new TraderFoods404Flags(_record);
+        private TraderFoods404Flags Flags() => new TraderFoods404Flags(_record);
         public StringField ProductSize() => new TraderFoods404ProductSize(_record);
     }
 }

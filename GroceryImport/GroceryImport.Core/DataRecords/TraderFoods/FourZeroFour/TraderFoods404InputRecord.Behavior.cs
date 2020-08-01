@@ -2,7 +2,6 @@ using GroceryImport.Core.DataRecords.FieldTypes;
 
 namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour
 {
-
     public partial interface ITraderFoods404InputRecord
     {
         Flag IsPerWeight();
@@ -10,9 +9,10 @@ namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour
         bool IsRegularSplitPrice();
         Flag IsTaxable();
     }
+
     public sealed partial class TraderFoods404InputRecord
     {
-        // Helper Methods Sorted Alphabetically
+        // Methods Sorted Alphabetically
         public Flag IsPerWeight() => Flags().PerWeight();
         
         public bool IsPromotionalSplitPrice() => PromotionalForQuantity() > 0;

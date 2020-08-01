@@ -8,6 +8,7 @@ namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour.OutputFields
 
         public TraderFoods404UnitOfMeasure(ITraderFoods404InputRecord inputRecord) => _inputRecord = inputRecord;
 
+        //TODO: "Pound" should be loaded from somewhere else to accomodate future metric systems.
         public override string AsSystemType() => _inputRecord.IsPerWeight() ? "Pound" : "Each";
     }
 }

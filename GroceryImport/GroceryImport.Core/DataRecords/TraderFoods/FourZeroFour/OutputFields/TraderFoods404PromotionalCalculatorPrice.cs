@@ -10,7 +10,7 @@ namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour.OutputFields
 
         public override decimal AsSystemType()
         {
-            if(_inputRecord.IsPromotionalSplitPrice()) return new TraderFoods404CalculatorSplitPrice(_inputRecord.PromotionalSplitPrice(), _inputRecord.PromotionalForQuantity());
+            if (_inputRecord.IsPromotionalSplitPrice()) return new TraderFoods404CalculatorSplitPrice(_inputRecord.PromotionalSplitPrice(), _inputRecord.PromotionalForQuantity());
 
             return new TraderFoods404CalculatorSingularPrice(_inputRecord.PromotionalSingularPrice());
         }

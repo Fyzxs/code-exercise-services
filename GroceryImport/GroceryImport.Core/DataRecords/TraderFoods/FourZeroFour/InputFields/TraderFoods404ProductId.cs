@@ -7,7 +7,7 @@ namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour.InputFields
         private const int StartIndexOnesBased = 1;
         private const int EndIndexOnesBased = 8;
 
-        public TraderFoods404ProductId(Record record) : base(record, StartIndexOnesBased, EndIndexOnesBased)
+        public TraderFoods404ProductId(IRecord record) : base(record, StartIndexOnesBased, EndIndexOnesBased)
         { }
     }
 }

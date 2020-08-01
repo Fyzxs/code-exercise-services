@@ -13,16 +13,7 @@ namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour.OutputFields
             _splitPrice = splitPrice;
             _forQuantity = forQuantity;
         }
-        public override string AsSystemType() => $"{_forQuantity.AsSystemType()} for {_splitPrice.AsCurrencyString()}";
-    }
-    public sealed class TraderFoods404SingularDisplayPrice : DisplayPrice
-    {
-        private readonly CurrencyField _price;
 
-        public TraderFoods404SingularDisplayPrice(CurrencyField price)
-        {
-            _price = price;
-        }
-        public override string AsSystemType() => _price.AsCurrencyString();
+        public override string AsSystemType() => $"{_forQuantity.AsSystemType()} for {_splitPrice.AsCurrencyString()}";
     }
 }
