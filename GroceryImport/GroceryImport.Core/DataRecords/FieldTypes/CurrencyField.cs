@@ -4,9 +4,9 @@ namespace GroceryImport.Core.DataRecords.FieldTypes
 {
     public abstract class CurrencyField : Field<decimal>
     {
-        //TODO: Currency requires a money object - I'm being a bit forgiving here. We'll see how long I stay that way.
+        //TODO: Currency requires a money object - I'm being a bit forgiving in this exercise
 
-        protected CurrencyField(Record record, int startIndexOnesBased, int endIndexOnesBased) : base(record, startIndexOnesBased, endIndexOnesBased) { }
+        protected CurrencyField(IRecord record, int startIndexOnesBased, int endIndexOnesBased) : base(record, startIndexOnesBased, endIndexOnesBased) { }
 
         public string AsCurrencyString() => AsSystemType().ToString("C");
 

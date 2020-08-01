@@ -1,6 +1,11 @@
 namespace GroceryImport.Core.DataRecords.FieldTypes
 {
-    public sealed class Record
+    public interface IRecord
+    {
+        string FieldStringValue(int startIndexOnesBased, int endIndexOnesBased);
+    }
+
+    public sealed class Record : IRecord
     {
         private readonly string _record;
 

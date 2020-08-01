@@ -4,7 +4,7 @@ namespace GroceryImport.Core.DataRecords.FieldTypes
 {
     public class NumberField : Field<int>
     {
-        public NumberField(Record record, int startIndexOnesBased, int endIndexOnesBased) : base(record, startIndexOnesBased, endIndexOnesBased) { }
+        public NumberField(IRecord record, int startIndexOnesBased, int endIndexOnesBased) : base(record, startIndexOnesBased, endIndexOnesBased) { }
 
         public override int AsSystemType()
         {
