@@ -1,8 +1,9 @@
 namespace GroceryImport.Core.DataRecords.ProductRecords
 {
-    public abstract class ProductRecord
+    public abstract partial class ProductRecord
     {
         public abstract string CompanyId();
+        public abstract string StoreId();
         public abstract int ProductId();
         public abstract string ProductDescription();
         public abstract string ProductSize();
@@ -10,7 +11,6 @@ namespace GroceryImport.Core.DataRecords.ProductRecords
         public abstract string PromotionalDisplayPrice();
         public abstract decimal RegularCalculatorPrice();
         public abstract string RegularDisplayPrice();
-        public abstract string StoreId();
         public abstract double TaxRate();
         public abstract string UnitOfMeasure();
         public abstract bool IsPromotional();

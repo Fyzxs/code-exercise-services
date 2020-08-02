@@ -19,7 +19,7 @@ namespace GroceryImport.Core.Tests.DataRecords.TraderFoods.FourZeroFour
 40123401 Marlboro Cigarettes                                         00001000 00000549 00000000 00000000 00000000 00000000 YNNNNNNNN          
 50133333 Fuji Apples (Organic)                                       00000349 00000000 00000000 00000000 00000000 00000000 NNYNNNNNN        lb";
             StreamReader streamReader = new StreamReader(new MemoryStream(Encoding.ASCII.GetBytes(inMemoryFile)));
-            TraderFoods404OutputRecordCollection subject = new TraderFoods404OutputRecordCollection(streamReader);
+            TraderFoods404ProductRecordCollection subject = new TraderFoods404ProductRecordCollection(streamReader);
 
             //Act
             int ctr = subject.Count();
@@ -41,7 +41,7 @@ namespace GroceryImport.Core.Tests.DataRecords.TraderFoods.FourZeroFour
 50133333 Fuji Apples (Organic)                                       00000349 00000000 00000000 00000000 00000000 00000000 NNYNNNNNN          12x12oz
 50133333 Fuji Apples (Organic)                                       00000349 00000000 00000000 00000000 00000000 00000000 NNYNNNNNN";
             StreamReader streamReader = new StreamReader(new MemoryStream(Encoding.ASCII.GetBytes(inMemoryFile)));
-            TraderFoods404OutputRecordCollection subject = new TraderFoods404OutputRecordCollection(streamReader);
+            TraderFoods404ProductRecordCollection subject = new TraderFoods404ProductRecordCollection(streamReader);
 
             //Act
             int ctr = subject.Count();
@@ -54,7 +54,7 @@ namespace GroceryImport.Core.Tests.DataRecords.TraderFoods.FourZeroFour
         public void ShouldReadFromAFile()
         {
             //Arrange
-            TraderFoods404OutputRecordCollection subject = new TraderFoods404OutputRecordCollection("./InputSample/default.txt");
+            TraderFoods404ProductRecordCollection subject = new TraderFoods404ProductRecordCollection("./InputSample/default.txt");
 
             //Act
             int ctr = subject.Count();

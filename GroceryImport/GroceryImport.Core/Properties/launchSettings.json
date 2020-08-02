@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "GroceryImport.Core": {
+      "commandName": "Project"
+    }
+  }
+}

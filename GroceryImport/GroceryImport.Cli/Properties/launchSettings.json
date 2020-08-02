@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "GroceryImport.Cli": {
+      "commandName": "Project",
+      "commandLineArgs": ".\\Scenarios.txt"
+    }
+  }
+}

@@ -1,10 +1,5 @@
-using System;
-using System.IO;
-using System.Linq;
-using System.Text;
-using FluentAssertions;
-using GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 // ReSharper disable TestFileNameWarning
 
 namespace GroceryImport.Core.Tests

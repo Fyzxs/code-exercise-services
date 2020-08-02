@@ -3,9 +3,9 @@ using GroceryImport.Core.DataRecords.ProductRecords;
 
 namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour
 {
-    public sealed class TraderFoods404OutputRecordCollection : ProductRecordCollection
+    public sealed class TraderFoods404ProductRecordCollection : ProductRecordCollection
     {
-        public TraderFoods404OutputRecordCollection(string fileLocation) :this(new StreamReader(fileLocation)){}
-        public TraderFoods404OutputRecordCollection(StreamReader streamReader) : base((StreamReader) streamReader, (IProductRecordFactory) new TraderFoods404ProductRecordFactory(), (IInputRecordValidator) new TraderFoods404InputRecordValidator()){}
+        public TraderFoods404ProductRecordCollection(string fileLocation) :this(new StreamReader(fileLocation)){}
+        public TraderFoods404ProductRecordCollection(StreamReader streamReader) : base(streamReader, new TraderFoods404ProductRecordFactory(), new TraderFoods404InputRecordValidator()){}
     }
 }
