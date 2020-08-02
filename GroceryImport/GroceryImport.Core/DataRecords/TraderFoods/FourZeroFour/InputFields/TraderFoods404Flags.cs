@@ -5,9 +5,9 @@ namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour.InputFields
     public sealed class TraderFoods404Flags : FlagsField
     {
         private const int StartIndexOnesBased = 124;
-        private const int EndIndexOnesBased = 132;
+        private const int InclusiveEndIndexOnesBased = 132;
 
-        public TraderFoods404Flags(IRecord record) : base(record, StartIndexOnesBased, EndIndexOnesBased)
+        public TraderFoods404Flags(IRecord record) : base(record, StartIndexOnesBased, InclusiveEndIndexOnesBased)
         { }
 
         public Flag PerWeight() => new TraderFoods404PerWeightFlag(Value());

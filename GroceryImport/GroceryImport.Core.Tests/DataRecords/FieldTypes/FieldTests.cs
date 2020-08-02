@@ -22,7 +22,7 @@ namespace GroceryImport.Core.Tests.DataRecords.FieldTypes
 
         private sealed class TestField : Field<string>
         {
-            public TestField(IRecord record, int startIndexOnesBased, int endIndexOnesBased) : base(record, startIndexOnesBased, endIndexOnesBased)
+            public TestField(IRecord record, int startIndexOnesBased, int inclusiveEndIndexOnesBased) : base(record, startIndexOnesBased, inclusiveEndIndexOnesBased)
             {
             }
 

@@ -8,6 +8,6 @@ namespace GroceryImport.Core.Tests.Fakes
 
         public FakeRecord(string returnValue) => _returnValue = returnValue;
 
-        public string FieldStringValue(int startIndexOnesBased, int endIndexOnesBased) => _returnValue;
+        public string FieldStringValue(int startIndexOnesBased, int inclusiveEndIndexOnesBased) => _returnValue;
     }
 }

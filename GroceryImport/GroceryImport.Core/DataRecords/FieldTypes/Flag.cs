@@ -2,6 +2,9 @@ using GroceryImport.Core.Library;
 
 namespace GroceryImport.Core.DataRecords.FieldTypes
 {
+    /// <summary>
+    /// A individual Flag value from inside a <see cref="FlagsField"/>
+    /// </summary>
     public abstract class Flag : ToSystem<bool>
     {
         private const string TrueValue = "Y";
@@ -13,6 +16,7 @@ namespace GroceryImport.Core.DataRecords.FieldTypes
             _value = value;
             _flagNumber = flagNumber;
         }
+
         public override bool AsSystemType() => _value.Substring(_flagNumber - 1, 1) == TrueValue;
     }
 }

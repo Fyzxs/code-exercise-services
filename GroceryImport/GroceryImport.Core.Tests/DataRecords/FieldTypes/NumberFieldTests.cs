@@ -39,7 +39,7 @@ namespace GroceryImport.Core.Tests.DataRecords.FieldTypes
 
         private sealed class TestNumberField:NumberField
         {
-            public TestNumberField(IRecord record, int startIndexOnesBased, int endIndexOnesBased) : base(record, startIndexOnesBased, endIndexOnesBased)
+            public TestNumberField(IRecord record, int startIndexOnesBased, int inclusiveEndIndexOnesBased) : base(record, startIndexOnesBased, inclusiveEndIndexOnesBased)
             {
             }
         }

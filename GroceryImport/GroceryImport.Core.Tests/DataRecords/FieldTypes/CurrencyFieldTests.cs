@@ -64,7 +64,7 @@ namespace GroceryImport.Core.Tests.DataRecords.FieldTypes
         
         private sealed class TestCurrencyField : CurrencyField
         {
-            public TestCurrencyField(IRecord record, int startIndexOnesBased, int endIndexOnesBased) : base(record, startIndexOnesBased, endIndexOnesBased)
+            public TestCurrencyField(IRecord record, int startIndexOnesBased, int inclusiveEndIndexOnesBased) : base(record, startIndexOnesBased, inclusiveEndIndexOnesBased)
             {}
         }
     }

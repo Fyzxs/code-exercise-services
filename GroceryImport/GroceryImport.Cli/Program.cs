@@ -9,12 +9,12 @@ namespace GroceryImport.Cli
     {
         public static void Main(string[] args)
         {
+            //Quick Arg Checking
             if (NoArgs(args)) return;
             if (DisplayHelp(args)) return;
 
-            string filePath = args[0];
-
-            new RunMe().Run(filePath);
+            //I like to the main pretty clean and move the work into another class.
+            new RunMe().Run(args[0]);
 
             Console.WriteLine("Records Processed");
             Console.WriteLine("Hit Enter to exit...");
@@ -49,6 +49,7 @@ namespace GroceryImport.Cli
 
             foreach (ProductRecord productRecord in productRecordCollection)
             {
+                //Quick impl to show processing happened.
                 Console.WriteLine(Printable(productRecord));
             }
 
