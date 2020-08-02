@@ -3,7 +3,7 @@ using GroceryImport.Core.DataRecords.ProductRecords;
 
 namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour.OutputFields
 {
-    public sealed class TraderFoods404SingularDisplayPrice : DisplayPrice
+    internal sealed class TraderFoods404SingularDisplayPrice : DisplayPrice
     {
         private readonly CurrencyField _price;
 

@@ -1,5 +1,9 @@
 using GroceryImport.Core.DataRecords.FieldTypes;
 
+/*
+ This file and the partial objects represents composite methods; or custom behavior that is not a 1:1 from the source record.
+ */
+
 namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour
 {
     public partial interface ITraderFoods404InputRecord

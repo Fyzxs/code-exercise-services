@@ -2,7 +2,7 @@ using GroceryImport.Core.DataRecords.FieldTypes;
 
 namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour.InputFields
 {
-    public sealed class TraderFoods404Flags : FlagsField
+    internal sealed class TraderFoods404Flags : FlagsField
     {
         private const int StartIndexOnesBased = 124;
         private const int InclusiveEndIndexOnesBased = 132;
@@ -15,6 +15,7 @@ namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour.InputFields
         public Flag Taxable() => new TraderFoods404TaxableFlag(Value());
 
     }
+
     internal sealed class TraderFoods404TaxableFlag : Flag
     {
         private const int FlagIndex = 5;

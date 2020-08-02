@@ -2,7 +2,7 @@ using GroceryImport.Core.DataRecords.ProductRecords;
 
 namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour.OutputFields
 {
-    public sealed class TraderFoods404PromotionalDisplayPrice : DisplayPrice
+    internal sealed class TraderFoods404PromotionalDisplayPrice : DisplayPrice
     {
         private readonly ITraderFoods404InputRecord _inputRecord;
 

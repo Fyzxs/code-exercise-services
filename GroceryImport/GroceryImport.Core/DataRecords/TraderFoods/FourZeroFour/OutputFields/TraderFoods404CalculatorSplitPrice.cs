@@ -4,7 +4,7 @@ using GroceryImport.Core.Library.Maths;
 
 namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour.OutputFields
 {
-    public sealed class TraderFoods404CalculatorSplitPrice : CalculatorPrice
+    internal sealed class TraderFoods404CalculatorSplitPrice : CalculatorPrice
     {
         private readonly CurrencyField _splitPrice;
         private readonly NumberField _forQuantity;

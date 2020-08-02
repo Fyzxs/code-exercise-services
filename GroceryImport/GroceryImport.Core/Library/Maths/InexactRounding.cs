@@ -4,9 +4,17 @@ namespace GroceryImport.Core.Library.Maths
 {
     public interface IRounding
     {
+        /// <summary>
+        /// Rounds the value for the Calculator
+        /// </summary>
+        /// <param name="value">the value to round</param>
+        /// <returns>A value rounded to the 4th decimal place by the Half Round Down method.</returns>
         decimal RoundForCalculator(decimal value);
     }
 
+    /// <summary>
+    /// Round Numbers... But not quite as intended...
+    /// </summary>
     public sealed class InexactRounding : IRounding
     {
         /*

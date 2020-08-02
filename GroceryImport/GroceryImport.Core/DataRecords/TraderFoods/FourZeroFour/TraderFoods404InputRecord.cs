@@ -1,9 +1,12 @@
 using GroceryImport.Core.DataRecords.FieldTypes;
 using GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour.InputFields;
 
+/*
+ This file and the partial objects represents method that are a 1:1 from the source record.
+ */
+
 namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour
 {
-
     public partial interface ITraderFoods404InputRecord
     {
         NumberField ProductId();
@@ -21,8 +24,7 @@ namespace GroceryImport.Core.DataRecords.TraderFoods.FourZeroFour
     {
         private readonly Record _record;
 
-        public TraderFoods404InputRecord(string record) : this(new Record(record))
-        { }
+        public TraderFoods404InputRecord(string record) : this(new Record(record)) { }
 
         private TraderFoods404InputRecord(Record record) => _record = record;
 

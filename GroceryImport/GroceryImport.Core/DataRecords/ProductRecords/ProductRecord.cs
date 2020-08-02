@@ -1,6 +1,11 @@
 namespace GroceryImport.Core.DataRecords.ProductRecords
 {
-    public abstract partial class ProductRecord
+    /// <summary>
+    /// An object to be used to update the database.
+    /// It's a class instead of an interface because the spec wanted an object.
+    /// I'd probably suggest an update to an interface since I don't see any behavior that belongs here... Yet.
+    /// </summary>
+    public abstract class ProductRecord
     {
         public abstract string CompanyId();
         public abstract string StoreId();
