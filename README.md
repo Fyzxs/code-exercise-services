@@ -7,11 +7,11 @@ This is a code exercise. It'll be a component of a continuing discussion. It'll 
   * Free - [Visual Studio](https://visualstudio.microsoft.com/vs/community/)
   * Trial - [Rider](https://www.jetbrains.com/rider/)
   * Free - [Visual Studio Code](https://code.visualstudio.com/docs/languages/csharp)
-* Run Tests
-  * Ensure everything is functioning as expected.
 * GroceryImport.sln is the solution file
   * GroceryImport.Core.csproj is the core functionality in .NET Standard
   * GroceryImport.Cli.csproj is the command line UI; in .NET Core
+* Run Tests
+  * Ensure everything is functioning as expected.
 
 ## Existing CI System
 * CI is via AppVeyor and is [here](https://ci.appveyor.com/project/Fyzxs/code-exercise-services).
